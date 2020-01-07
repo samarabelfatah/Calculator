@@ -9,13 +9,13 @@ namespace ConsoleCalculator
         static void Main()
         {
 
-            //test
+            //read all types of operation
             Console.Write("Type the operation you want to execute (sum, subtract, multiply, divide): ... ");
             var result = Console.ReadLine();
-
+            //read the first operation to excute
             Console.Write("Please type the first operand: ");
             var n1 = Console.ReadLine();
-
+            //read the second operation to excute
             Console.Write("Now, Please type the second operand: ");
             var n2 = Console.ReadLine();
 
