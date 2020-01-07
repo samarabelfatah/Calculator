@@ -9,21 +9,21 @@ namespace ConsoleCalculator
     {
         static void Main()
         {
-            var operationList = new List<string>() { "sum", "subtract", "multiply", "divide" };
+            List<string> operationList = new List<string>() { "sum", "subtract", "multiply", "divide" };
         Start:
             Console.Write("Type the operation you want to execute (sum, subtract, multiply, divide): ... ");
             var result = Console.ReadLine().Trim().ToLower();
-            if (string.IsNullOrWhiteSpace(result) && operationList.Contains(result))
+            if (!string.IsNullOrWhiteSpace(result) && operationList.Contains(result))
             {
             FirstOperand:
                 Console.Write("Please type the first operand: ");
                 var n1 = Console.ReadLine().Trim();
-                if (string.IsNullOrWhiteSpace(n1) && double.TryParse(n1, out double xn1))
+                if (!string.IsNullOrWhiteSpace(n1) && double.TryParse(n1, out double xn1))
                 {
                 SecondOperand:
                     Console.Write("Now, Please type the second operand: ");
                     var n2 = Console.ReadLine().Trim();
-                    if (string.IsNullOrWhiteSpace(n2) && double.TryParse(n2, out double xn2))
+                    if (!string.IsNullOrWhiteSpace(n2) && double.TryParse(n2, out double xn2))
                     {
                         var calculator = new Calculator();
                         if (result == "sum")
@@ -50,7 +50,9 @@ namespace ConsoleCalculator
                                     if (result == "divide")
                                     {
                                         calculator.color = ConsoleColor.Red;
-                                        calculator.Divide(Convert.ToDouble(n1), Convert.ToDouble(n2));
+                                       
+                                            calculator.Divide(Convert.ToDouble(n1), Convert.ToDouble(n2));
+                                      
                                     }
                                     else
                                     {
