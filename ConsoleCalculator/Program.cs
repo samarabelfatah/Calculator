@@ -9,7 +9,6 @@ namespace ConsoleCalculator
         static void Main()
         {
 
-            //test
             Console.Write("Type the operation you want to execute (sum, subtract, multiply, divide): ... ");
             var result = Console.ReadLine();
 
