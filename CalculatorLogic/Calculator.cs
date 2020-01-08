@@ -4,12 +4,11 @@ namespace CalculatorLogic
 {
     public class Calculator
     {
-        public ConsoleColor color = ConsoleColor.White;
+        
 
         public double Sum(double a, double b)
         {
             var x = a + b;
-            Console.ForegroundColor = color;
             Console.WriteLine($"The result is: {x}");
             return x;
         }
@@ -17,7 +16,6 @@ namespace CalculatorLogic
         public double Subtract(double a, double b)
         {
             var x = a - b;
-            Console.ForegroundColor = color;
             Console.WriteLine($"The result is: {x}");
             return x;
         }
@@ -26,7 +24,6 @@ namespace CalculatorLogic
         {if (a != 0 && b != 0)
             {
                 var x = a * b;
-                Console.ForegroundColor = color;
                 Console.WriteLine($"The result is: {x}");
                 return x;
             }
@@ -47,7 +44,6 @@ namespace CalculatorLogic
                 {
 
                     x = a / b;
-                    Console.ForegroundColor = color;
                     Console.WriteLine($"The result is: {x}");
 
                 }

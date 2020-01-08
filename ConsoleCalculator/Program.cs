@@ -2,73 +2,140 @@
 using System.Collections.Generic;
 using System.Linq;
 using CalculatorLogic;
+using System.Resources;
+using System.Threading;
+using System.Globalization;
+using System.Text;
 
 namespace ConsoleCalculator
 {
+    public enum languages
+    {
+        Arabic = 1,
+        Engilsh = 2
+    }
     class Program
     {
+
+
         static void Main()
         {
+
             List<string> operationList = new List<string>() { "sum", "subtract", "multiply", "divide" };
-        Start:
-            Console.Write("Type the operation you want to execute (sum, subtract, multiply, divide): ... ");
-            var result = Console.ReadLine().Trim().ToLower();
-            if (!string.IsNullOrWhiteSpace(result) && operationList.Contains(result))
+            var consoleValuesArr = Enum.GetNames(typeof(ConsoleColor));
+            var consoleValuesStr = string.Join(", ", consoleValuesArr).ToLower();
+
+            #region Language
+        Language:
+            Console.Write("Type the Language \n" +
+                "1 for Arabic \n" +
+                "2 for English \n");
+
+            if (int.TryParse(Console.ReadLine(), out int y))
             {
-            FirstOperand:
-                Console.Write("Please type the first operand: ");
-                var n1 = Console.ReadLine().Trim();
-                if (!string.IsNullOrWhiteSpace(n1) && double.TryParse(n1, out double xn1))
+                CultureInfo cultureInfo = new CultureInfo("en");
+                if (y == (int)languages.Arabic)
+                    cultureInfo = new CultureInfo("ar");
+
+                Thread.CurrentThread.CurrentCulture = cultureInfo;
+                Thread.CurrentThread.CurrentUICulture = cultureInfo;
+                CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+                CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+            }
+            else
+                goto Language;
+
+            #endregion
+            #region Color
+            Color:
+            Console.OutputEncoding = Encoding.UTF8;
+            //Console.WriteLine("مرحبا بك");
+
+            Console.WriteLine(Properties.Resource.PickAColor + " \n");
+            Console.Write($"9 = {Properties.Resource.Blue}\n12 = {Properties.Resource.Red}\n");            
+            var colorcodestr = Console.ReadLine().ToLower().Trim();
+            if (int.TryParse(colorcodestr, out int colorCode)) {                
+                if (colorCode == (int)ConsoleColor.Red || colorCode == (int)ConsoleColor.Blue)
                 {
-                SecondOperand:
-                    Console.Write("Now, Please type the second operand: ");
-                    var n2 = Console.ReadLine().Trim();
-                    if (!string.IsNullOrWhiteSpace(n2) && double.TryParse(n2, out double xn2))
-                    {
-                        var calculator = new Calculator();
-                        if (result == "sum")
+                    Console.ForegroundColor = (ConsoleColor)colorCode;
+                }
+                else
+                    goto Color;
+            }
+               else
+                    goto Color;
+            #endregion
+
+            Start:
+            Console.Write($"{Properties.Resource.TypeOfOperation} \n" +
+                $" 1 = {Properties.Resource.SumOperation} \n" +
+                $" 2 = {Properties.Resource.SubtractOperation} \n" +
+                $" 3 = {Properties.Resource.MultiplyOperation} \n" +
+                $" 4 = {Properties.Resource.DivideOperation}\n");
+
+            var result = Console.ReadLine().Trim().ToLower();
+            if (int.TryParse(result,out int operationNumber))
+            {
+                if (operationNumber >= 1 && operationNumber <= 4)
+                {
+
+                    
+                    FirstOperand:
+                        Console.Write($"{Properties.Resource.FirstOperand}\n");
+                        var n1 = Console.ReadLine().Trim();
+                        if (!string.IsNullOrWhiteSpace(n1) && double.TryParse(n1, out double xn1))
                         {
-                            calculator.color = ConsoleColor.Red;
-                            calculator.Sum(Convert.ToDouble(n1), Convert.ToDouble(n2));
-                        }
-                        else
-                        {
-                            if (result == "subtract")
+                        SecondOperand:
+                             Console.Write($"{Properties.Resource.SecondOperand}\n");
+                        var n2 = Console.ReadLine().Trim();
+                            if (!string.IsNullOrWhiteSpace(n2) && double.TryParse(n2, out double xn2))
                             {
-                                calculator.color = ConsoleColor.Red;
-                                calculator.Subtract(Convert.ToDouble(n1), Convert.ToDouble(n2));
-                            }
-                            else
-                            {
-                                if (result == "multiply")
+                                var calculator = new Calculator();
+                                if (operationNumber == 1)
                                 {
-                                    calculator.color = ConsoleColor.Red;
-                                    calculator.Multiply(Convert.ToDouble(n1), Convert.ToDouble(n2));
+                                    calculator.Sum(Convert.ToDouble(n1), Convert.ToDouble(n2));
                                 }
                                 else
                                 {
-                                    if (result == "divide")
+                                    if (operationNumber == 2)
                                     {
-                                        calculator.color = ConsoleColor.Red;
-                                       
-                                            calculator.Divide(Convert.ToDouble(n1), Convert.ToDouble(n2));
-                                      
+                                        calculator.Subtract(Convert.ToDouble(n1), Convert.ToDouble(n2));
                                     }
                                     else
                                     {
+                                        if (operationNumber == 3)
+                                        {
+                                            calculator.Multiply(Convert.ToDouble(n1), Convert.ToDouble(n2));
+                                        }
+                                        else
+                                        {
+                                            if (operationNumber == 4)
+                                            {
 
+                                                calculator.Divide(Convert.ToDouble(n1), Convert.ToDouble(n2));
+
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
                                     }
                                 }
-                            }
-                        }
 
-                    }
-                    else
-                        goto SecondOperand;
-                }
-                else
-                    goto FirstOperand;
+                            }
+                            else
+                                goto SecondOperand;
+                        }
+                        else
+                            goto FirstOperand;
+                    
+
+                }else
+                goto Start;
             }
+            
             else
                 goto Start;
 
