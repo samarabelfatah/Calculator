@@ -126,6 +126,9 @@
   <data name="FirstOperand" xml:space="preserve">
     <value>Please type the first operand</value>
   </data>
+  <data name="InvalidDivision" xml:space="preserve">
+    <value>You couln't devide by zero</value>
+  </data>
   <data name="MultiplyOperation" xml:space="preserve">
     <value>Multiply</value>
   </data>

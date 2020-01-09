@@ -14,9 +14,9 @@ namespace ConsoleCalculator
         Arabic = 1,
         Engilsh = 2
     }
-    class Program
+   static class Program
     {
-
+        static CultureInfo cultureInfo = new CultureInfo("en");
 
         static void Main()
         {
@@ -30,10 +30,9 @@ namespace ConsoleCalculator
             Console.Write("Type the Language \n" +
                 "1 for Arabic \n" +
                 "2 for English \n");
-
+ 
             if (int.TryParse(Console.ReadLine(), out int y))
             {
-                CultureInfo cultureInfo = new CultureInfo("en");
                 if (y == (int)languages.Arabic)
                     cultureInfo = new CultureInfo("ar");
 
@@ -45,6 +44,9 @@ namespace ConsoleCalculator
             }
             else
                 goto Language;
+           
+              
+
 
             #endregion
             #region Color
@@ -52,8 +54,8 @@ namespace ConsoleCalculator
             Console.OutputEncoding = Encoding.UTF8;
             //Console.WriteLine("مرحبا بك");
 
-            Console.WriteLine(Properties.Resource.PickAColor + " \n");
-            Console.Write($"9 = {Properties.Resource.Blue}\n12 = {Properties.Resource.Red}\n");            
+            Console.WriteLine(Properties.Resource.PickAColor.Reverse() + " \n");
+            Console.Write($"9 = {Properties.Resource.Blue.Reverse()}\n12 = {Properties.Resource.Red.Reverse()}\n");            
             var colorcodestr = Console.ReadLine().ToLower().Trim();
             if (int.TryParse(colorcodestr, out int colorCode)) {                
                 if (colorCode == (int)ConsoleColor.Red || colorCode == (int)ConsoleColor.Blue)
@@ -68,11 +70,11 @@ namespace ConsoleCalculator
             #endregion
 
             Start:
-            Console.Write($"{Properties.Resource.TypeOfOperation} \n" +
-                $" 1 = {Properties.Resource.SumOperation} \n" +
-                $" 2 = {Properties.Resource.SubtractOperation} \n" +
-                $" 3 = {Properties.Resource.MultiplyOperation} \n" +
-                $" 4 = {Properties.Resource.DivideOperation}\n");
+            Console.Write($"{Properties.Resource.TypeOfOperation.Reverse()} \n" +
+                $" 1 = {Properties.Resource.SumOperation.Reverse()} \n" +
+                $" 2 = {Properties.Resource.SubtractOperation.Reverse()} \n" +
+                $" 3 = {Properties.Resource.MultiplyOperation.Reverse()} \n" +
+                $" 4 = {Properties.Resource.DivideOperation.Reverse()}\n");
 
             var result = Console.ReadLine().Trim().ToLower();
             if (int.TryParse(result,out int operationNumber))
@@ -82,38 +84,42 @@ namespace ConsoleCalculator
 
                     
                     FirstOperand:
-                        Console.Write($"{Properties.Resource.FirstOperand}\n");
+                        Console.Write($"{Properties.Resource.FirstOperand.Reverse()}\n");
                         var n1 = Console.ReadLine().Trim();
                         if (!string.IsNullOrWhiteSpace(n1) && double.TryParse(n1, out double xn1))
                         {
                         SecondOperand:
-                             Console.Write($"{Properties.Resource.SecondOperand}\n");
+                             Console.Write($"{Properties.Resource.SecondOperand.Reverse()}\n");
                         var n2 = Console.ReadLine().Trim();
                             if (!string.IsNullOrWhiteSpace(n2) && double.TryParse(n2, out double xn2))
                             {
                                 var calculator = new Calculator();
                                 if (operationNumber == 1)
                                 {
-                                    calculator.Sum(Convert.ToDouble(n1), Convert.ToDouble(n2));
+                                    calculator.Sum(Convert.ToDouble(n1), Convert.ToDouble(n2) , Properties.Resource.Result.Reverse());
                                 }
                                 else
                                 {
                                     if (operationNumber == 2)
                                     {
-                                        calculator.Subtract(Convert.ToDouble(n1), Convert.ToDouble(n2));
+                                        calculator.Subtract(Convert.ToDouble(n1), Convert.ToDouble(n2), Properties.Resource.Result.Reverse());
                                     }
                                     else
                                     {
                                         if (operationNumber == 3)
                                         {
-                                            calculator.Multiply(Convert.ToDouble(n1), Convert.ToDouble(n2));
+                                            calculator.Multiply(Convert.ToDouble(n1), Convert.ToDouble(n2), Properties.Resource.Result.Reverse());
                                         }
                                         else
                                         {
                                             if (operationNumber == 4)
                                             {
 
-                                                calculator.Divide(Convert.ToDouble(n1), Convert.ToDouble(n2));
+                                              var x=  calculator.Divide(Convert.ToDouble(n1), Convert.ToDouble(n2), Properties.Resource.Result.Reverse());
+                                            if (Double.IsInfinity(x))
+                                            {
+                                                Console.WriteLine($"{Properties.Resource.InvalidDivision.Reverse()}");
+                                            }
 
                                             }
                                             else
@@ -141,5 +147,20 @@ namespace ConsoleCalculator
 
             Console.ReadLine();
         }
+
+    
+        public static string Reverse(this string input)
+        {
+            if (cultureInfo.Name == "ar" )
+            {
+                char[] array = input.ToCharArray();
+                Array.Reverse(array);
+                return new String(array);
+            }
+                return input;
+        }
+  
+
     }
+    
 }

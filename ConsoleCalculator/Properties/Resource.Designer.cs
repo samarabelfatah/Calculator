@@ -88,6 +88,15 @@ namespace ConsoleCalculator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You couln&apos;t devide by zero.
+        /// </summary>
+        public static string InvalidDivision {
+            get {
+                return ResourceManager.GetString("InvalidDivision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multiply.
         /// </summary>
         public static string MultiplyOperation {

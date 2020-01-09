@@ -126,6 +126,9 @@
   <data name="FirstOperand" xml:space="preserve">
     <value>يرجى كتابة الرقم الأول</value>
   </data>
+  <data name="InvalidDivision" xml:space="preserve">
+    <value>لا يمكن القسمه علي صفر</value>
+  </data>
   <data name="MultiplyOperation" xml:space="preserve">
     <value>ضرب</value>
   </data>

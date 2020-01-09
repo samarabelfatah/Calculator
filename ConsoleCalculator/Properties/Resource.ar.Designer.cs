@@ -59,50 +59,128 @@ namespace ConsoleCalculator.Properties {
                 resourceCulture = value;
             }
         }
-        
+
+
         /// <summary>
-        ///   Looks up a localized string similar to قسمه.
+        ///   Looks up a localized string similar to Blue.
         /// </summary>
-        public static string DivideOperation {
-            get {
+        public static string Blue
+        {
+            get
+            {
+                return ResourceManager.GetString("Blue", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Divide.
+        /// </summary>
+        public static string DivideOperation
+        {
+            get
+            {
                 return ResourceManager.GetString("DivideOperation", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to ضرب.
+        ///   Looks up a localized string similar to Please type the first operand.
         /// </summary>
-        public static string MultiplyOperation {
-            get {
+        public static string FirstOperand
+        {
+            get
+            {
+                return ResourceManager.GetString("FirstOperand", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Multiply.
+        /// </summary>
+        public static string MultiplyOperation
+        {
+            get
+            {
                 return ResourceManager.GetString("MultiplyOperation", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to طرح.
+        ///   Looks up a localized string similar to pick a color.
         /// </summary>
-        public static string SubtractOperation {
-            get {
+        public static string PickAColor
+        {
+            get
+            {
+                return ResourceManager.GetString("PickAColor", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Red.
+        /// </summary>
+        public static string Red
+        {
+            get
+            {
+                return ResourceManager.GetString("Red", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The result is.
+        /// </summary>
+        public static string Result
+        {
+            get
+            {
+                return ResourceManager.GetString("Result", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Please type the second operand.
+        /// </summary>
+        public static string SecondOperand
+        {
+            get
+            {
+                return ResourceManager.GetString("SecondOperand", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Subtract.
+        /// </summary>
+        public static string SubtractOperation
+        {
+            get
+            {
                 return ResourceManager.GetString("SubtractOperation", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to جمع.
+        ///   Looks up a localized string similar to Sum.
         /// </summary>
-        public static string SumOperation {
-            get {
+        public static string SumOperation
+        {
+            get
+            {
                 return ResourceManager.GetString("SumOperation", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to اكتب العملية التي تريد تنفيذها.
+        ///   Looks up a localized string similar to Type the operation you want to execute.
         /// </summary>
-        public static string TypeOfOperation {
-            get {
+        public static string TypeOfOperation
+        {
+            get
+            {
                 return ResourceManager.GetString("TypeOfOperation", resourceCulture);
             }
         }
     }
+  
 }
